@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/25spring_JavaA.iml" filepath="$PROJECT_DIR$/25spring_JavaA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Assignment2/Assignment2.iml" filepath="$PROJECT_DIR$/Assignment2/Assignment2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Week3_Exercise/Week3_Exercise.iml" filepath="$PROJECT_DIR$/Week3_Exercise/Week3_Exercise.iml" />
     </modules>
   </component>
 </project>
