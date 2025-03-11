@@ -124,10 +124,7 @@ public class Main {
         //二维表，上下是月份，左右是小区编号
         //因除了最后一种情况外，上下或左右系数均相同，故简化写法
         double cLeftOrRight=0, cUpOrDown=0;
-        if(data[month][n]!=-1)//数据存在
-        {
-            return data[month][n];
-        }
+        if(data[month][n]!=-1)return data[month][n];//数据存在
         boolean isLeftNullOrEmpty = n==0||data[month][n-1]==-1;
         boolean isRightNullOrEmpty = n+1==data[0].length||data[month][n+1]==-1;
         boolean isUpNullOrEmpty = month==0||data[month-1][n]==-1;
@@ -151,24 +148,24 @@ public class Main {
             cUpOrDown =0.5;
         }
         //缺左或右,但不缺上下2
-        else if((isLeftNullOrEmpty||isRightNullOrEmpty)&&!isUpNullOrEmpty&&!isDownNullOrEmpty)
+        else if(!isUpNullOrEmpty&&!isDownNullOrEmpty)
         {
             cLeftOrRight=0.3;
             cUpOrDown =0.35;
         }
         //缺上且下，但不缺左右。此为特殊情况6
-        else if(isUpNullOrEmpty&&isRightNullOrEmpty)
+        else if(isUpNullOrEmpty&&isDownNullOrEmpty)
         {
             return (int)(data[month][n-1]*0.4+data[month][n+1]*0.6);
         }
         //缺上或下，但不缺左右3
-        else if(!isLeftNullOrEmpty&&!isRightNullOrEmpty&&(!isUpNullOrEmpty||!isDownNullOrEmpty))
+        else if(!isLeftNullOrEmpty&&!isRightNullOrEmpty)
         {
             cLeftOrRight = 0.4;
             cUpOrDown = 0.2;
         }
-        //缺上或下且缺左或右4
-        else if((!isLeftNullOrEmpty||!isRightNullOrEmpty)&&(!isUpNullOrEmpty||!isDownNullOrEmpty))
+        //缺上或下且缺左或右4（更改
+        else
         {
             cLeftOrRight = 0.6;
             cUpOrDown = 0.4;
@@ -179,72 +176,5 @@ public class Main {
         if(!isUpNullOrEmpty)result+=cUpOrDown*data[month-1][n];
         if(!isDownNullOrEmpty)result+=cUpOrDown*data[month+1][n];
         return (int)result;
-
-
-        /*
-        else
-        {
-            if(month+1== data.length)//month在下边界
-            {
-                if(n+1==data[0].length)//month在下且n在右
-                {
-                    cLeft=0;
-                    cRight=0.3;
-                    cUpOrDown =0.35;
-                    cDown=0.35;
-                }
-                else if(n==0)//month在下且n在左
-                {
-
-                }
-                else//month在下且n不在边界
-                {
-                    cLeft=0.4;
-                    cRight=0.4;
-                    cUpOrDown =0.2;
-                    cDown=0;
-                }
-            }
-            else if(month==0)//month在上边界
-            {
-                if(n==0)//month在上且n在左
-                {
-
-                }
-                else if(n==data[0].length)//month在上且n在右
-                {
-
-                }
-                else//month在上且n不在边界
-                {
-                    cLeft=0.4;
-                    cRight=0.4;
-                    cUpOrDown =0;
-                    cDown=0.2;
-                }
-            }
-            else if(n==0)//month不在边界且n在左
-            {
-                cLeft=0;
-                cRight=0.3;
-                cUpOrDown =0.35;
-                cDown=0.35;
-            }
-            else if (n==data[0].length)//month不在边界且n在右
-            {
-                cLeft=0.3;
-                cRight=0;
-                cUpOrDown =0.35;
-                cDown=0.35;
-            }
-            else//month不在边界且n不在边界
-            {
-                cLeft=0.3;
-                cRight=0.3;
-                cUpOrDown =0.2;
-                cDown=0.2;
-            }
-        }
-        return 0;*/
     }
 }
